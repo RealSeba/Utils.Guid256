@@ -1,5 +1,15 @@
 ﻿# Changelog
 
+## [v0.2.0-alpha] - 2025-02-26
+### Added
+
+- Added Json serialization and deserialization support.
+- Added Guid256Converter class and tagged Guid256
+- supports Dictionaries with Guid256 as Keys and Values
+- Added xunit tests
+- minor namespace cleanup
+
+
 ## [0.1.1-alpha] - 2025-02-25
 ### Added
 - Initial release of Guid256 package.
