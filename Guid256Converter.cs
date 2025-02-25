@@ -10,6 +10,7 @@ namespace Utils.Guid256
 {
     public class Guid256Converter : JsonConverter<Guid256>
     {
+
         public override void Write(Utf8JsonWriter writer, Guid256 value, JsonSerializerOptions options)
         {
             // Serialize as hex string (using the ToString method of Guid256)
@@ -22,6 +23,20 @@ namespace Utils.Guid256
             string hexString = reader.GetString() ?? string.Empty;
             return Guid256.Parse(hexString);
         }
-    }
 
+
+        // Override these methods for dictionary key serialization support
+        public override void WriteAsPropertyName(Utf8JsonWriter writer, Guid256 value, JsonSerializerOptions options)
+        {
+            writer.WritePropertyName(value.ToString()); // Serialize the key as a string (hex format)
+        }
+
+        public override Guid256 ReadAsPropertyName(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            // Deserialize the key from string (hex format)
+            string hexString = reader.GetString();
+            return Guid256.Parse(hexString);
+        }
+
+    }
 }
