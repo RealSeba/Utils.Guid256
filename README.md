@@ -25,9 +25,9 @@ Guid256 id2 = Guid256.Parse(hexString);
 You can install Guid256 via NuGet:
 
 ```sh
-dotnet add package SSega.Utils.Guid256
+dotnet add package Utils.Guid256
 ```
 
 ```sh
-Install-Package SSega.Utils.Guid256
+Install-Package Utils.Guid256
 ```
