@@ -1,7 +1,9 @@
 ﻿using System.Security.Cryptography;
+using System.Text.Json.Serialization;
 
 namespace Utils.Guid256
 {
+    [JsonConverter(typeof(Guid256Converter))]
     public readonly struct Guid256 : IEquatable<Guid256>, IComparable<Guid256>
     {
         private readonly byte[] _bytes; // 32 bytes = 256 bits
