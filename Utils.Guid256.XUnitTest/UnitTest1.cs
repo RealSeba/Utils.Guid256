@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace SSega.Utils.Guid256.XUnitTest
+namespace Utils.Guid256.XUnitTest
 {
 
     public class Guid256Tests
@@ -119,7 +119,7 @@ namespace SSega.Utils.Guid256.XUnitTest
             string hex3 = "56d90f686b6c2372160e2b5b73766eb8a4b9a2073e5f37676a2d286cb600de9c";
             string hex4 = "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
             string hex5 = "0000000000000000000000000000000000000000000000000000000000000000";
-            
+
             //act
             Guid256 guid1 = Guid256.Parse(hex1);
             Guid256 guid2 = Guid256.Parse(hex2);

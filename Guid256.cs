@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace SSega.Utils.Guid256
+namespace Utils.Guid256
 {
     public readonly struct Guid256 : IEquatable<Guid256>, IComparable<Guid256>
     {
