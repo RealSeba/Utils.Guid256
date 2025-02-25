@@ -4,7 +4,7 @@ using Xunit;
 namespace Utils.Guid256.XUnitTest
 {
 
-    public class Guid256Tests
+    public class Guid256BaseUnitTest
     {
         [Fact]
         public void NewGuid256_ShouldReturnUniqueInstances()
