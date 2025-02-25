@@ -6,9 +6,20 @@
 		<Nullable>enable</Nullable>
 		<Title>Guid256</Title>
 		<Authors>Sebastian Sega</Authors>
-		<Version>$(VersionPrefix) 0.1.0-alpha</Version>
+		<PackageId>Utils.Guid256</PackageId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<Version>$(VersionPrefix) 0.1.1-alpha</Version>
 		<Description>A lightwight Guid256 struct for id generation.</Description>
-		<RepositoryUrl>https://github.com/YourUser/Guid256</RepositoryUrl>
+		<RepositoryUrl>https://github.com/RealSeba/Utils.Guid256</RepositoryUrl>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Utils.Guid256.XUnitTest\**" />
+	  <EmbeddedResource Remove="Utils.Guid256.XUnitTest\**" />
+	  <None Remove="Utils.Guid256.XUnitTest\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
 </Project>
