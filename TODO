@@ -5,3 +5,6 @@
 - maybe add support for "smler" bitsized id systems, and use sha256 as one way generator.
 -- pro evenly distributed across all 32 guid256 bytes
 -- no way to go back (pro or con depends on use case)
+
+- implement remaining interfaces alongside Guid
+- check original guid for tricks
