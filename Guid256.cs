@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace Utils.Guid256
@@ -32,7 +33,7 @@ namespace Utils.Guid256
         #region Conversion
         public byte[] ToByteArray() => (byte[])_bytes.Clone();
 
-        public ReadOnlySpan<char> ToSpan() => _bytes.AsSpan<char>();
+        public ReadOnlySpan<char> ToSpan() => Encoding.UTF8.GetString(_bytes.AsSpan());
 
         public static Guid256 Parse(string input)
         {

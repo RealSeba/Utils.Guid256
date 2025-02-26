@@ -14,8 +14,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Utils.Guid256.Benchmark\**" />
 	  <Compile Remove="Utils.Guid256.XUnitTest\**" />
+	  <EmbeddedResource Remove="Utils.Guid256.Benchmark\**" />
 	  <EmbeddedResource Remove="Utils.Guid256.XUnitTest\**" />
+	  <None Remove="Utils.Guid256.Benchmark\**" />
 	  <None Remove="Utils.Guid256.XUnitTest\**" />
 	</ItemGroup>
 
