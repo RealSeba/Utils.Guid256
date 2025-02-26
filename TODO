@@ -8,3 +8,5 @@
 
 - implement remaining interfaces alongside Guid
 - check original guid for tricks
+
+- implement Span support
