@@ -32,9 +32,28 @@ namespace Utils.Guid256
         #region Conversion
         public byte[] ToByteArray() => (byte[])_bytes.Clone();
 
+        public ReadOnlySpan<char> ToSpan() => _bytes.AsSpan<char>();
+
         public static Guid256 Parse(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
+                throw new ArgumentNullException(nameof(input));
+
+            try
+            {
+                byte[] bytes = Convert.FromHexString( input );
+                return new Guid256(bytes);
+            }
+            catch (FormatException ex)
+            {
+                throw new FormatException("Invalid Guid256 format. Expected hex string.", ex);
+            }
+        }
+
+
+        public static Guid256 Parse(ReadOnlySpan<char> input)
+        {
+            if (input.IsEmpty || input.IsWhiteSpace())
                 throw new ArgumentNullException(nameof(input));
 
             try
@@ -47,6 +66,7 @@ namespace Utils.Guid256
                 throw new FormatException("Invalid Guid256 format. Expected hex string.", ex);
             }
         }
+
         #endregion
 
         #region Overrides & Interfaces
