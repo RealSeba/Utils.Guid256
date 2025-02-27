@@ -46,7 +46,7 @@ namespace Utils.Guid256
         #region Conversion
         public byte[] ToByteArray() => (byte[])_bytes.Clone();
 
-        public ReadOnlySpan<char> ToSpan() => Encoding.UTF8.GetString(_bytes.AsSpan());
+        public ReadOnlySpan<byte> AsReadOnlySpan() => _bytes.AsSpan();
 
         public static Guid256 Parse(string input)
         {
