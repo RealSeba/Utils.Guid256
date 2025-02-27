@@ -22,26 +22,22 @@ namespace Utils.Guid256
     [JsonConverter(typeof(Guid256Converter))]
     public readonly struct Guid256 : IEquatable<Guid256>, IComparable<Guid256>
     {
-        private readonly byte[] _bytes; // 32 bytes = 256 bits
+        private readonly byte[] _bytes = new byte[32];
         #region Constructors
         public Guid256()
         {
-#warning "This constructor should not be used. It's only for serialization.";
-            //byte[] bytes = RandomNumberGenerator.GetBytes(32); // Secure random
+            RandomNumberGenerator.Fill(_bytes.AsSpan());
         }
-        private Guid256(byte[] bytes)
+        private Guid256(ReadOnlySpan<byte> bytes)
         {
-            if (bytes is null) throw new ArgumentNullException(nameof(bytes));
+            if (bytes.IsEmpty == true) throw new ArgumentNullException(nameof(bytes));
             if (bytes.Length != 32) throw new ArgumentException("Guid256 must be 32 bytes long.", nameof(bytes));
-
-            _bytes = new byte[32];
-            Array.Copy(bytes, _bytes, 32);
+            bytes.CopyTo(_bytes.AsSpan());
         }
 
         public static Guid256 NewGuid256()
         {
-            byte[] bytes = RandomNumberGenerator.GetBytes(32); // Secure random
-            return new Guid256(bytes);
+            return new Guid256();
         }
         #endregion
 
