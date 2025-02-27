@@ -12,7 +12,7 @@ namespace Utils.Guid256.Benchmark
         {
         }
 
-
+        /*
         
         [Benchmark]
         public Guid Guid_Create()
@@ -66,26 +66,7 @@ namespace Utils.Guid256.Benchmark
         }
         
 
-
-        Guid ng1 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
-        Guid ng2 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
-
-        [Benchmark]
-        public bool Guid_Compare_Equal_Guid()
-        {
-            return ng1 == ng2;
-        }
-
-
-        Guid256 ng3 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
-        Guid256 ng4 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
-        [Benchmark]
-        public bool Guid256_Compare_Equal_Guid256()
-        {
-            return ng3 == ng4;
-        }
-
-
+        
         [Benchmark]
         public void Guid_Json_Serialize_Deserialize_EqualsCheck()
         {
@@ -111,7 +92,46 @@ namespace Utils.Guid256.Benchmark
                 throw new Exception("are not but shoul be equal");
             }
         }
+        */
 
+        Guid ng1 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
+        Guid ng2 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
+
+        [Benchmark]
+        public bool Guid_Equals_Guid()
+        {
+            return ng1 == ng2;
+        }
+
+        Guid256 ng3 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
+        Guid256 ng4 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
+        /*
+        [Benchmark]
+        public bool Guid256_EqualsForLoop_Guid256()
+        {
+            return ng3.EqualsForLoop(ng4);
+        }*/
+
+        [Benchmark]
+        public bool Guid256_EqualsSequenceEqual_Guid256()
+        {
+            return ng3.EqualsSequenceEqual(ng4);
+        }
+
+        [Benchmark]
+        public bool Guid256_EqualsVector_Guid256()
+        {
+            return ng3.EqualsVector(ng4);
+        }
+
+        [Benchmark]
+        public bool Guid256_Equals256HardwareVector_Guid256()
+        {
+            return ng3.Equals256HardwareVector(ng4);
+        }
+
+
+        
 
     }
 }

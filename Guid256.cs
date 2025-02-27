@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
+using System.Runtime.Intrinsics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -92,22 +94,6 @@ namespace Utils.Guid256
             return obj is Guid256 other && Equals(other);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(Guid256 other)
-        {
-            return this._bytes.SequenceEqual(other._bytes);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static bool EqualsCore(Guid256 self, Guid256 other)
-        {
-            if (self._bytes == null || other._bytes == null) return false;
-            for (int i = 0; i < 32; i++)
-                if (self._bytes[i] != other._bytes[i])
-                    return false;
-            return true;
-        }
-
         public override int GetHashCode()
         {
             // Use XOR of integer chunks for a reasonable hash
@@ -130,6 +116,56 @@ namespace Utils.Guid256
             }
             return 0;
         }
+        #endregion
+
+        #region Equals Methods
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals(Guid256 other)
+        {
+            return this.EqualsVector(other);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool EqualsSequenceEqual(Guid256 other)
+        {
+            return this._bytes.SequenceEqual(other._bytes);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool EqualsVector(Guid256 other)
+        {
+            Vector<byte> thisVector = new Vector<byte>(this._bytes);
+            Vector<byte> otherVector = new Vector<byte>(other._bytes);
+            return thisVector == otherVector;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool EqualsForLoop(Guid256 other)
+        {
+            if (this._bytes == null || other._bytes == null) return false;
+            for (int i = 0; i < 32; i++)
+                if (this._bytes[i] != other._bytes[i])
+                    return false;
+            return true;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Equals256HardwareVector(Guid256 other)
+        {
+            if (Vector256.IsHardwareAccelerated)
+            {
+                return Vector256.LoadUnsafe(ref Unsafe.As<Guid256, byte>(ref Unsafe.AsRef(in this))) == Vector256.LoadUnsafe(ref Unsafe.As<Guid256, byte>(ref Unsafe.AsRef(in other)));
+            }
+
+            Vector<byte> thisVector = new Vector<byte>(this._bytes);
+            Vector<byte> otherVector = new Vector<byte>(other._bytes);
+            return thisVector == otherVector;
+        }
+
+
+
+
         #endregion
 
         #region Operators

@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Running;
+using System.Runtime.Intrinsics;
 
 namespace Utils.Guid256.Benchmark
 {
