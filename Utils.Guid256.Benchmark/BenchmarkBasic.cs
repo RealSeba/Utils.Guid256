@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Security.Cryptography;
+using System.Text.Json;
 
 
 namespace Utils.Guid256.Benchmark
@@ -45,28 +46,7 @@ namespace Utils.Guid256.Benchmark
             return (ng1 == ng2);
         }
         
-
-
-
-        Guid ng1 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
-        Guid ng2 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
-
-        [Benchmark]
-        public bool Guid_Compare_Equal_Guid()
-        {
-            return ng1 == ng2;
-        }
         
-
-        Guid256 ng3 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
-        Guid256 ng4 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
-        [Benchmark]
-        public bool Guid256_Compare_Equal_Guid256()
-        {
-            return ng3 == ng4;
-        }
-        
-
         [Benchmark]
         public bool Guid_Create_ToString_ParseBack()
         {
@@ -84,17 +64,54 @@ namespace Utils.Guid256.Benchmark
             Guid256 gn2 = Guid256.Parse(guid256String);
             return gn == gn2;
         }
+        
 
 
-        /*
+        Guid ng1 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
+        Guid ng2 = new Guid("abcdef12-3456-7890-1234-567890abcdef");
+
         [Benchmark]
-        public bool Guid256_Create_ToSpan_SpanParseBack()
+        public bool Guid_Compare_Equal_Guid()
         {
-            Guid256 gn = Guid256.NewGuid256();
-            ReadOnlySpan<char> guid256String = gn.ToSpan();
-            Guid256 gn2 = Guid256.Parse(guid256String);
-            return gn == gn2;
-        }*/
+            return ng1 == ng2;
+        }
+
+
+        Guid256 ng3 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
+        Guid256 ng4 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
+        [Benchmark]
+        public bool Guid256_Compare_Equal_Guid256()
+        {
+            return ng3 == ng4;
+        }
+
+
+        [Benchmark]
+        public void Guid_Json_Serialize_Deserialize_EqualsCheck()
+        {
+            Guid g1 = Guid.NewGuid();
+            string json = JsonSerializer.Serialize<Guid>(g1);
+            Guid g2 = JsonSerializer.Deserialize<Guid>(json);
+            if (g1 == g2) { }
+            else
+            {
+                throw new Exception("are not but shoul be equal");
+            }
+        }
+
+        [Benchmark]
+        public void Guid256_Json_Serialize_Deserialize_EqualsCheck()
+        {
+            Guid256 g1 = Guid256.NewGuid256();
+            string json = JsonSerializer.Serialize<Guid256>(g1);
+            Guid256 g2 = JsonSerializer.Deserialize<Guid256>(json);
+            if (g1 == g2) { }
+            else
+            {
+                throw new Exception("are not but shoul be equal");
+            }
+        }
+
 
     }
 }
