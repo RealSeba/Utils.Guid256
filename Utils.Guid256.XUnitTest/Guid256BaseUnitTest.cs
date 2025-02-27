@@ -140,5 +140,22 @@ namespace Utils.Guid256.XUnitTest
             Assert.Equal(hex4, resHex4);
             Assert.Equal(hex5, resHex5);
         }
+
+
+        [Fact]
+        public void AsReadonlySpan()
+        {
+            var guid = Guid256.NewGuid256();
+            var guidSpan = guid.AsReadOnlySpan();
+            var guidByteArray = guid.ToByteArray();
+
+            Assert.Equal(32, guidSpan.Length);
+            Assert.Equal(32, guidByteArray.Length);
+
+            for (int i = 0; i < 32; i++)
+            {
+                Assert.Equal(guidSpan[i], guidByteArray[i]);
+            }
+        }
     }
 }
