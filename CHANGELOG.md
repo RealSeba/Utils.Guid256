@@ -5,6 +5,7 @@
 
 - benchamrk options added
 - minor performance improvements
+- AsReadOnlySpan<byte>() added
 
 ## [v0.2.0-alpha] - 2025-02-26
 ### Added
