@@ -1,5 +1,11 @@
 ﻿# Changelog
 
+## [x.x.x] - xxxx-xx-xx
+### soon
+
+- benchamrk options added
+- minor performance improvements
+
 ## [v0.2.0-alpha] - 2025-02-26
 ### Added
 

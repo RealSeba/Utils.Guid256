@@ -1,6 +1,6 @@
 # Guid256
 
-Guid256 is a lightweight .NET package that provides a custom implementation for working with 256-bit GUIDs. It offers seamless serialization support and easy conversion between standard GUIDs and 256-bit GUIDs. It uses System.Security.Cryptography.RandomNumberGenerator to create Random bits.
+Guid256 is a lightweight .NET package that provides a custom implementation for working with 256-bit GUIDs. It offers seamless serialization support and it uses System.Security.Cryptography.RandomNumberGenerator to create Random bits.
 
 ## Features
 
@@ -29,7 +29,6 @@ Guid256 is a lightweight .NET package that provides a custom implementation for 
 - Added static method `Guid256.NewGuid256()` for generating new 256-bit GUIDs.
 - created github and nuget package
 
-- 
 ## Usage
 
 ```csharp
