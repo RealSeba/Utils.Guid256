@@ -82,7 +82,7 @@ namespace Utils.Guid256
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Guid256 other)
         {
-            return EqualsCore(this, other);
+            return this._bytes.SequenceEqual(other._bytes);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveOptimization)]
