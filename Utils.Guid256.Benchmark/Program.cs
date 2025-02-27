@@ -8,7 +8,7 @@ namespace Utils.Guid256.Benchmark
         static void Main(string[] args)
         {
             Guid256 g = new Guid256();
-            var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var dateTime = DateTime.Now.ToString("yyyyMMdd");
             var config = ManualConfig.Create(DefaultConfig.Instance)
                 .WithArtifactsPath($"./../../../BenchmarkResults/{dateTime}");
 
