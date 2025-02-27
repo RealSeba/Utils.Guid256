@@ -5,6 +5,18 @@ using System.Text.Json.Serialization;
 
 namespace Utils.Guid256
 {
+
+    /// <summary>
+    /// Guid256 is a lightweight .NET package that provides a custom implementation for working with 256-bit GUIDs.
+    /// It is a struct with a custom JSON converter that handles serialization and deserialization of Guid256 values.
+    /// internally it is stored in a 32 bytes array.
+    /// RandomNumberGenerator.GetBytes(32) is used for random and secure bit distribution
+    /// Use Guid256.NewGuid256() to generate new Guid256 values.
+    /// 
+    /// to bring it in perspective: assuming we create 1 000 000 000 000 ids EVERY day and somehow store them,
+    /// it will take more than 1 000 000 000 000 000 000 000 000 YEARS to get the first collision on average.
+    /// Do not use the default constructor. Use Guid256.NewGuid256()
+    /// </summary>
     [JsonConverter(typeof(Guid256Converter))]
     public readonly struct Guid256 : IEquatable<Guid256>, IComparable<Guid256>
     {
@@ -12,6 +24,7 @@ namespace Utils.Guid256
         #region Constructors
         public Guid256()
         {
+#warning "This constructor should not be used. It's only for serialization.";
             //byte[] bytes = RandomNumberGenerator.GetBytes(32); // Secure random
         }
         private Guid256(byte[] bytes)
