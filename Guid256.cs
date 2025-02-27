@@ -85,44 +85,6 @@ namespace Utils.Guid256
             return this._bytes.SequenceEqual(other._bytes);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveOptimization)]
-        private static bool EqualsCore2(Guid256 self, Guid256 other)
-        {
-            if (self._bytes == null || other._bytes == null) return false;
-            return self._bytes[0] == other._bytes[0]
-                && self._bytes[1] == other._bytes[1]
-                && self._bytes[2] == other._bytes[2]
-                && self._bytes[3] == other._bytes[3]
-                && self._bytes[4] == other._bytes[4]
-                && self._bytes[5] == other._bytes[5]
-                && self._bytes[6] == other._bytes[6]
-                && self._bytes[7] == other._bytes[7]
-                && self._bytes[8] == other._bytes[8]
-                && self._bytes[9] == other._bytes[9]
-                && self._bytes[10] == other._bytes[10]
-                && self._bytes[11] == other._bytes[11]
-                && self._bytes[12] == other._bytes[12]
-                && self._bytes[13] == other._bytes[13]
-                && self._bytes[14] == other._bytes[14]
-                && self._bytes[15] == other._bytes[15]
-                && self._bytes[16] == other._bytes[16]
-                && self._bytes[17] == other._bytes[17]
-                && self._bytes[18] == other._bytes[18]
-                && self._bytes[19] == other._bytes[19]
-                && self._bytes[20] == other._bytes[20]
-                && self._bytes[21] == other._bytes[21]
-                && self._bytes[22] == other._bytes[22]
-                && self._bytes[23] == other._bytes[23]
-                && self._bytes[24] == other._bytes[24]
-                && self._bytes[25] == other._bytes[25]
-                && self._bytes[26] == other._bytes[26]
-                && self._bytes[27] == other._bytes[27]
-                && self._bytes[28] == other._bytes[28]
-                && self._bytes[29] == other._bytes[29]
-                && self._bytes[30] == other._bytes[30]
-                && self._bytes[31] == other._bytes[31];
-        }
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool EqualsCore(Guid256 self, Guid256 other)
         {
