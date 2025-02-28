@@ -1,11 +1,14 @@
 ﻿# Changelog
 
-## [x.x.x] - xxxx-xx-xx
+## [v0.3.0] - 2025-02-28
 ### soon
 
 - benchamrk options added
 - minor performance improvements
 - AsReadOnlySpan<byte>() added
+- changed/improved Equals/==
+- some code cleanup
+- updated construction under the hood, less byte copying (specifically using RandomNumberGenerator.Fill(...) instead og ...GetBytes(...))
 
 ## [v0.2.0-alpha] - 2025-02-26
 ### Added

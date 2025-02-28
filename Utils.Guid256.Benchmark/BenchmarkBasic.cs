@@ -12,8 +12,6 @@ namespace Utils.Guid256.Benchmark
         {
         }
 
-        
-        
         [Benchmark]
         public Guid Guid_Create()
         {
@@ -105,7 +103,14 @@ namespace Utils.Guid256.Benchmark
 
         Guid256 ng3 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
         Guid256 ng4 = Guid256.Parse("abcdef12345678901234567890abcdefabcdef12345678901234567890abcdef");
-        
+
+        [Benchmark]
+        public bool Guid256_EqualsVector_Guid256()
+        {
+            return ng3.Equals(ng4);
+        }
+
+        /*
         [Benchmark]
         public bool Guid256_EqualsForLoop_Guid256()
         {
@@ -119,19 +124,13 @@ namespace Utils.Guid256.Benchmark
         }
 
         [Benchmark]
-        public bool Guid256_EqualsVector_Guid256()
-        {
-            return ng3.EqualsVector(ng4);
-        }
-
-        [Benchmark]
         public bool Guid256_Equals256HardwareVector_Guid256()
         {
             return ng3.Equals256HardwareVector(ng4);
-        }
+        }*/
 
 
-        
+
 
     }
 }

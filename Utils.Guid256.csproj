@@ -8,7 +8,7 @@
 		<Authors>Sebastian Sega</Authors>
 		<PackageId>Utils.Guid256</PackageId>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<Version>$(VersionPrefix) 0.2.0-alpha</Version>
+		<Version>$(VersionPrefix) 0.3.0-alpha</Version>
 		<Description>A lightwight Guid256 struct for id generation.</Description>
 		<RepositoryUrl>https://github.com/RealSeba/Utils.Guid256</RepositoryUrl>
 	</PropertyGroup>

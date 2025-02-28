@@ -50,7 +50,6 @@ namespace Utils.Guid256
         {
             if (string.IsNullOrWhiteSpace(input))
                 throw new ArgumentNullException(nameof(input));
-
             try
             {
                 byte[] bytes = Convert.FromHexString( input );
@@ -62,27 +61,10 @@ namespace Utils.Guid256
             }
         }
 
-
-        private static Guid256 Parse(ReadOnlySpan<char> input)
-        {
-            if (input.IsEmpty || input.IsWhiteSpace())
-                throw new ArgumentNullException(nameof(input));
-
-            try
-            {
-                byte[] bytes = Convert.FromHexString(input);
-                return new Guid256(bytes);
-            }
-            catch (FormatException ex)
-            {
-                throw new FormatException("Invalid Guid256 format. Expected hex string.", ex);
-            }
-        }
-
         #endregion
 
         #region Overrides & Interfaces
-        public override string ToString() => Convert.ToHexStringLower(new ReadOnlySpan<byte>( _bytes) );
+        public override string ToString() => Convert.ToHexStringLower( AsReadOnlySpan() );
 
         public override bool Equals(object? obj)
         {
@@ -123,44 +105,12 @@ namespace Utils.Guid256
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool EqualsSequenceEqual(Guid256 other)
+        private bool EqualsVector(Guid256 other)
         {
-            return this._bytes.SequenceEqual(other._bytes);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool EqualsVector(Guid256 other)
-        {
-            Vector<byte> thisVector = new Vector<byte>(this._bytes);
-            Vector<byte> otherVector = new Vector<byte>(other._bytes);
+            Vector<byte> thisVector = new Vector<byte>(this.AsReadOnlySpan());
+            Vector<byte> otherVector = new Vector<byte>(other.AsReadOnlySpan());
             return thisVector == otherVector;
         }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool EqualsForLoop(Guid256 other)
-        {
-            if (this._bytes == null || other._bytes == null) return false;
-            for (int i = 0; i < 32; i++)
-                if (this._bytes[i] != other._bytes[i])
-                    return false;
-            return true;
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals256HardwareVector(Guid256 other)
-        {
-            if (Vector256.IsHardwareAccelerated)
-            {
-                return Vector256.LoadUnsafe(ref Unsafe.As<Guid256, byte>(ref Unsafe.AsRef(in this))) == Vector256.LoadUnsafe(ref Unsafe.As<Guid256, byte>(ref Unsafe.AsRef(in other)));
-            }
-
-            Vector<byte> thisVector = new Vector<byte>(this._bytes);
-            Vector<byte> otherVector = new Vector<byte>(other._bytes);
-            return thisVector == otherVector;
-        }
-
-
-
 
         #endregion
 
