@@ -63,7 +63,7 @@ namespace Utils.Guid256
         }
 
 
-        public static Guid256 Parse(ReadOnlySpan<char> input)
+        private static Guid256 Parse(ReadOnlySpan<char> input)
         {
             if (input.IsEmpty || input.IsWhiteSpace())
                 throw new ArgumentNullException(nameof(input));
