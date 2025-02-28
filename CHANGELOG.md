@@ -1,6 +1,6 @@
 ﻿# Changelog
 
-## [v0.3.0] - 2025-02-28
+## [v0.3.0-alpha] - 2025-02-28
 ### soon
 
 - benchamrk options added
