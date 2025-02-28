@@ -8,7 +8,7 @@
 - AsReadOnlySpan<byte>() added
 - changed/improved Equals/==
 - some code cleanup
-- updated construction under the hood, less byte copying (specifically using RandomNumberGenerator.Fill(...) instead og ...GetBytes(...))
+- updated construction under the hood, less byte copying (specifically using RandomNumberGenerator.Fill(...) instead of ...GetBytes(...))
 
 ## [v0.2.0-alpha] - 2025-02-26
 ### Added
